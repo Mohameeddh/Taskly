@@ -54,7 +54,7 @@ app.UseSerilogRequestLogging();
 app.UseMiddleware<Taskly.Api.Middleware.ExceptionHandlingMiddleware>();
 
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 
 app.UseAuthorization();

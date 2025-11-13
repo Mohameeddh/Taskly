@@ -13,7 +13,7 @@ namespace Taskly.Infrastructure.Persistence
         public TasklyDbContext(DbContextOptions<TasklyDbContext> options) : base(options) { }
 
         public DbSet<TaskItem> TaskItems => Set<TaskItem>();
-
+        public DbSet<User> Users => Set<User>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TaskItem>(e =>
@@ -22,6 +22,13 @@ namespace Taskly.Infrastructure.Persistence
                 e.HasKey(x => x.Id);
                 e.Property(x => x.Title).IsRequired().HasMaxLength(200);
                 e.Property(x => x.Description).HasMaxLength(2000);
+            });
+
+            modelBuilder.Entity<User>(e =>
+            {
+                e.ToTable("Users");
+                e.HasKey(x => x.Id);
+                e.Property(x => x.UserName).IsRequired().HasMaxLength(100);
             });
         }
     }
